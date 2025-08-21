@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Work Cycle Timer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-phase="work">
+    <main class="app">
+      <header class="app__header">
+        <h1 class="app__title">Work Cycle Timer</h1>
+      </header>
+
+      <section class="display">
+        <div class="ring" aria-hidden="true">
+          <div class="ring__inner">
+            <div id="phaseLabel" class="display__phase">Work</div>
+            <div id="timeDisplay" class="display__time" aria-live="polite">25:00</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings">
+        <div class="settings__item">
+          <label for="workMinutes" class="settings__label">Work (minutes):</label>
+          <input type="number" id="workMinutes" min="1" max="120" value="25" class="settings__input" title="Set work session duration">
+        </div>
+        <div class="settings__item">
+          <label for="restMinutes" class="settings__label">Rest (minutes):</label>
+          <input type="number" id="restMinutes" min="1" max="60" value="5" class="settings__input" title="Set rest session duration">
+        </div>
+        <button id="applySettingsBtn" class="btn btn--small">Apply</button>
+      </section>
+
+      <section class="controls controls--segmented" aria-label="Mode toggle">
+        <button id="workModeBtn" class="btn" aria-pressed="true">Work</button>
+        <button id="restModeBtn" class="btn" aria-pressed="false">Rest</button>
+      </section>
+
+      <section class="controls" aria-label="Timer controls">
+        <button id="startPauseBtn" class="btn btn--primary" aria-pressed="false">Start</button>
+        <button id="resetBtn" class="btn" title="Reset current session">Reset</button>
+        <button id="skipBtn" class="btn" title="Skip to next session">Skip</button>
+      </section>
+
+      <section class="meta">
+        <div class="meta__item">Completed sessions: <strong id="completedCount">0</strong></div>
+        <div class="meta__item">
+          Cycles (Work + Rest): <strong id="cycleCount">0</strong> /
+          <input type="number" id="targetCycles" min="1" max="20" value="4" class="meta__input" title="Set target cycles">
+          <button id="setCyclesBtn" class="btn btn--small">Set</button>
+        </div>
+        <div class="meta__hint" id="cycleHint">A cycle automatically runs a Work session followed by a Rest session.</div>
+      </section>
+
+      <footer class="app__footer">
+        <div class="musings">
+          <div class="musings__label">Daily musings</div>
+          <small id="dailyMusing">Stay focused. One session at a time.</small>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+

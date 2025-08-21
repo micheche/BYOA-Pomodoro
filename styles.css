@@ -1,0 +1,391 @@
+/* Nature-themed Pomodoro Timer CSS */
+:root {
+  --color-work: #2563eb;
+  --color-short: #059669;
+  --color-long: #0d9488;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --surface: #ffffff;
+  --surface-translucent: rgba(255,255,255,0.7);
+  --bg: #f0f9ff;
+  --bg-accent: #e0f2fe;
+  --border: #e5e7eb;
+  --ring-track: #e8ebf0;
+  --accent: var(--color-work);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--color-text);
+  background:
+    /* Sun */
+    radial-gradient(80px 80px at 85% 15%, rgba(255, 236, 179, 0.4) 0%, transparent 50%),
+    /* Tree 1 - right side */
+    radial-gradient(120px 200px at 90% 70%, rgba(34, 197, 94, 0.08) 0%, transparent 60%),
+    /* Tree 2 - left side */
+    radial-gradient(100px 180px at 15% 75%, rgba(34, 197, 94, 0.06) 0%, transparent 55%),
+    /* Leaves cluster 1 */
+    radial-gradient(60px 60px at 25% 25%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+    /* Leaves cluster 2 */
+    radial-gradient(40px 40px at 75% 35%, rgba(34, 197, 94, 0.04) 0%, transparent 50%),
+    /* Leaves cluster 3 */
+    radial-gradient(50px 50px at 10% 60%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+    /* Main gradient background */
+    radial-gradient(1200px 600px at 10% -10%, #ffffff 0%, transparent 60%),
+    radial-gradient(1000px 500px at 120% 0%, var(--bg-accent) 0%, transparent 50%),
+    linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+  position: relative;
+}
+
+/* Add floating leaf elements */
+body::before {
+  content: "🍃";
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  font-size: 24px;
+  opacity: 0.1;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::after {
+  content: "🌿";
+  position: fixed;
+  top: 60%;
+  right: 15%;
+  font-size: 20px;
+  opacity: 0.08;
+  animation: float 10s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Additional nature elements using CSS */
+.app::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Small leaf 1 */
+    radial-gradient(8px 8px at 20% 30%, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
+    /* Small leaf 2 */
+    radial-gradient(6px 6px at 80% 45%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+    /* Small leaf 3 */
+    radial-gradient(10px 10px at 35% 80%, rgba(34, 197, 94, 0.04) 0%, transparent 50%),
+    /* Small leaf 4 */
+    radial-gradient(7px 7px at 70% 85%, rgba(34, 197, 94, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Floating animation for nature elements */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(5deg); 
+  }
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 20px 44px;
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.app__title {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.display {
+  background: var(--surface-translucent);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+  margin-top: 12px;
+  backdrop-filter: saturate(1.2) blur(8px);
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--surface-translucent);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: saturate(1.1) blur(6px);
+  -webkit-backdrop-filter: saturate(1.1) blur(6px);
+}
+
+.settings__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings__label {
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 120px;
+  text-align: right;
+}
+
+.settings__input {
+  width: 80px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  background: var(--surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.settings__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 80%);
+}
+
+.settings__input:hover {
+  border-color: var(--accent);
+}
+
+.display__phase {
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.display__time {
+  font-variant-numeric: tabular-nums;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+/* Circular progress ring */
+.ring {
+  --size: min(78vw, 320px);
+  position: relative;
+  width: var(--size);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 6px;
+}
+
+.ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) calc(var(--progress, 0) * 360deg), var(--ring-track) 0);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: var(--surface-translucent);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.ring__inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 18px 0 10px;
+}
+
+.controls--segmented {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  display: inline-flex;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--color-text);
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.05s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent), white 40%);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  color: #fff;
+  border-color: transparent;
+  background: var(--accent);
+  box-shadow: 0 10px 20px color-mix(in oklab, var(--accent), transparent 80%);
+}
+
+body[data-phase="work"] { --accent: var(--color-work); }
+body[data-phase="shortBreak"] { --accent: var(--color-short); }
+body[data-phase="longBreak"] { --accent: var(--color-long); }
+
+/* Segmented control active state */
+[aria-label="Mode toggle"] .btn[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--accent), white 82%);
+  border-color: color-mix(in oklab, var(--accent), white 50%);
+  color: color-mix(in oklab, var(--accent), black 40%);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+.meta__item strong {
+  color: var(--color-text);
+}
+
+.meta__hint {
+  font-size: 13px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.meta__input {
+  width: 60px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  background: var(--surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meta__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 80%);
+}
+
+.meta__input:hover {
+  border-color: var(--accent);
+}
+
+.btn--small:hover {
+  background: color-mix(in oklab, var(--accent), white 90%);
+  border-color: var(--accent);
+}
+
+.btn--small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* Alarm animation */
+@keyframes alarm-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+body[data-alarm="true"] .ring {
+  animation: alarm-pulse 0.5s ease-in-out infinite;
+}
+
+.app__footer {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.musings {
+  display: grid;
+  gap: 4px;
+}
+
+.musings__label {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+@media (max-width: 420px) {
+  .display__time {
+    font-size: 56px;
+  }
+  
+  .settings {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .settings__item {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  
+  .settings__label {
+    min-width: auto;
+    text-align: center;
+  }
+  
+  .settings__input {
+    width: 100px;
+  }
+}
