@@ -296,6 +296,15 @@
     // Load saved settings from localStorage
     loadSettings();
     
+    // Recalculate remainingMs after loading settings to ensure alignment
+    if (currentPhase === Phase.Work) {
+      remainingMs = minutesToMs(workMinutes);
+    } else if (currentPhase === Phase.ShortBreak) {
+      remainingMs = minutesToMs(restMinutes);
+    } else {
+      remainingMs = minutesToMs(LONG_BREAK_MINUTES);
+    }
+    
     document.body.setAttribute('data-phase', currentPhase);
     phaseLabelElement.textContent = getPhaseLabel(currentPhase);
     completedCountElement.textContent = String(completedWorkSessions);

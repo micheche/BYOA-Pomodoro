@@ -415,9 +415,24 @@ body[data-alarm="true"] .ring {
     padding: 16px; /* Reduced padding on mobile */
   }
   
+  /* Mobile-specific positioning for the work/rest buttons */
+  .display__controls {
+    position: static; /* Remove absolute positioning on mobile */
+    top: auto;
+    right: auto;
+    margin-bottom: 16px; /* Add space below the buttons */
+    justify-content: center; /* Center the buttons */
+    order: -1; /* Move buttons above the ring */
+  }
+  
+  /* Adjust the ring size for mobile to accommodate buttons above */
+  .ring {
+    --size: min(70vw, 280px); /* Slightly smaller on mobile */
+  }
+  
   .settings {
-    padding: 10px; /* Reduced from 12px */
-    gap: 6px; /* Reduced from 8px */
+    padding: 12px;
+    gap: 8px;
   }
   
   .settings__item {
