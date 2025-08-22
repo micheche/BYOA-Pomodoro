@@ -13,6 +13,10 @@
       </header>
 
       <section class="display">
+        <div class="display__controls">
+          <button id="workModeBtn" class="btn btn--small" aria-pressed="true">Work</button>
+          <button id="restModeBtn" class="btn btn--small" aria-pressed="false">Rest</button>
+        </div>
         <div class="ring" aria-hidden="true">
           <div class="ring__inner">
             <div id="phaseLabel" class="display__phase">Work</div>
@@ -33,11 +37,6 @@
         <button id="applySettingsBtn" class="btn btn--small">Apply</button>
       </section>
 
-      <section class="controls controls--segmented" aria-label="Mode toggle">
-        <button id="workModeBtn" class="btn" aria-pressed="true">Work</button>
-        <button id="restModeBtn" class="btn" aria-pressed="false">Rest</button>
-      </section>
-
       <section class="controls" aria-label="Timer controls">
         <button id="startPauseBtn" class="btn btn--primary" aria-pressed="false">Start</button>
         <button id="resetBtn" class="btn" title="Reset current session">Reset</button>
@@ -51,7 +50,6 @@
           <input type="number" id="targetCycles" min="1" max="20" value="4" class="meta__input" title="Set target cycles">
           <button id="setCyclesBtn" class="btn btn--small">Set</button>
         </div>
-        <div class="meta__hint" id="cycleHint">A cycle automatically runs a Work session followed by a Rest session.</div>
       </section>
 
       <footer class="app__footer">
